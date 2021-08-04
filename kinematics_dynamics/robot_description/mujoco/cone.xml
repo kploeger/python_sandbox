@@ -1,0 +1,109 @@
+<mujoco model="wam_4dof">
+    <option integrator="Euler" timestep="0.002"/>
+    <compiler coordinate="local" angle="radian" meshdir="meshes/"/>
+    <default>
+        <joint type="hinge" limited="true" pos="0 0 0" axis="0 0 1" frictionloss=".001"/>
+        <default class="viz">
+            <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.7 0.7 0.7 1"/>
+        </default>
+        <default class="col">
+            <geom type="mesh" contype="0" conaffinity="1" group="0" rgba="0.5 0.6 0.7 0.99"/>
+        </default>
+        <default class="x_axis">
+            <geom contype="0" conaffinity="0" group="2" rgba="1 0 0 1"
+                  type="cylinder" size=".01 0.15" pos="0.15 0 0" euler="0 1.57 0"/>
+        </default>
+        <default class="y_axis">
+            <geom contype="0" conaffinity="0" group="2" rgba="0 1 0 1"
+                  type="cylinder" size=".01 0.15" pos="0 0.15 0" euler="1.57 0 0"/>
+        </default>
+        <default class="z_axis">
+            <geom contype="0" conaffinity="0" group="2" rgba="0 0 1 1"
+                  type="cylinder" size=".01 0.15" pos="0 0 0.15" euler="0 0 0"/>
+        </default>
+    </default>
+
+    <asset>
+        <mesh file="base_link_fine.stl"/>
+        <mesh file="base_link_convex.stl"/>
+        <mesh file="shoulder_link_fine.stl"/>
+        <mesh file="shoulder_link_convex_decomposition_p1.stl"/>
+        <mesh file="shoulder_link_convex_decomposition_p2.stl"/>
+        <mesh file="shoulder_link_convex_decomposition_p3.stl"/>
+        <mesh file="shoulder_pitch_link_fine.stl"/>
+        <mesh file="shoulder_pitch_link_convex.stl"/>
+        <mesh file="upper_arm_link_fine.stl"/>
+        <mesh file="upper_arm_link_convex_decomposition_p1.stl"/>
+        <mesh file="upper_arm_link_convex_decomposition_p2.stl"/>
+        <mesh file="elbow_link_fine.stl"/>
+        <mesh file="elbow_link_convex.stl"/>
+        <mesh file="wrist_palm_link_fine.stl"/>
+        <mesh file="juggling_tool_base_30deg.stl"/>
+        <mesh file="cone_convex_part_side.stl"/>
+        <mesh file="throwing_tool.stl"/>
+
+        <texture name="groundplane" type="2d" builtin="checker" rgb1=".25 .26 .25"
+                 rgb2=".22 .22 .22" width="100" height="100" mark="edge" markrgb=".3 .3 .3"/>
+        <material name="MatGnd" texture="groundplane" texrepeat="5 5" specular="1" shininess=".3"
+                  reflectance="0.00001"/>
+    </asset>
+
+    <worldbody>
+        <light directional="true" cutoff="60" exponent="1" diffuse="1 1 1" specular=".1 .1 .1" pos=".1 .2 1.3"
+               dir="-.1 -.2 -1.3"/>
+        <geom name="ground" type="plane" pos="0 0 0" size="1.5 2 1" conaffinity="1" contype="1" material="MatGnd"/>
+        <geom class="x_axis"/>
+        <geom class="y_axis"/>
+        <geom class="z_axis"/>
+
+        <body name="throwing_tool/base" pos="0 0 0.1" euler="0 0 0">
+            <geom class="x_axis"/>
+            <geom class="y_axis"/>
+            <geom class="z_axis"/>
+
+            <geom class="viz" mesh="throwing_tool" euler="0 0 0"/>
+
+            <body name="throwing_tool/cone" pos="0 0.002 0.108" euler="-2.092 0 0">
+
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 0"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 0.174"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 0.348"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 0.523"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 0.697"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 0.872"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 1.046"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 1.221"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 1.395"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 1.570"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 1.744"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 1.918"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 2.093"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 2.267"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 2.442"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 2.616"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 2.791"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 2.965"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 -0.174"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 -0.348"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 -0.523"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 -0.697"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 -0.872"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 -1.046"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 -1.221"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 -1.395"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 -1.570"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 -1.744"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 -1.918"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 -2.093"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 -2.267"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 -2.442"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 -2.616"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 -2.791"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 -2.965"/>
+                <geom class="col" mesh="cone_convex_part_side" euler="0 0 -3.142"/>
+
+            </body>
+        </body>
+
+    </worldbody>
+</mujoco>

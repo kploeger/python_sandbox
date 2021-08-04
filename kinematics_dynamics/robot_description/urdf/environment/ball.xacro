@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<robot name="ball" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- XACRO Properties -->
+    <xacro:property name="radius" value="0.055"/>
+    <xacro:property name="mass" value="0.057"/>
+
+    <link name="base_link">
+
+        <inertial> <!-- Inertia from https://en.wikipedia.org/wiki/List_of_moments_of_inertia#List_of_3D_inertia_tensors -->
+            <mass value="${mass}"/>
+            <inertia ixx="${(2/5)*mass*radius*radius}" ixy="0" ixz="0"
+                     iyy="${(2/5)*mass*radius*radius}" iyz="0"
+                     izz="${(2/5)*mass*radius*radius}"/>
+        </inertial>
+
+        <visual>
+            <geometry>
+                <sphere radius="${radius}"/>
+            </geometry>
+            <material name="orange">
+                <color rgba="0.975 0.6 0. 1"/>
+            </material>
+        </visual>
+
+        <collision>
+            <geometry>
+                <sphere radius="${radius}"/>
+            </geometry>
+            <contact_coefficients mu="0.4" kp="45000" kd="19"/>
+        </collision>
+
+    </link>
+</robot>
