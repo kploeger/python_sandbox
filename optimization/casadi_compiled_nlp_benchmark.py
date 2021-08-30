@@ -46,7 +46,7 @@ def main():
     pos = pos0 + vel0*dt + acc[:,0]*dt**2
     vel = vel0 + acc[:,0]*dt
     for k in range(1, num_steps):
-        pos = cas.horzcat(pos, pos[:,-1] + vel[:,-1]*dt + acc[:,k]*dt**2)
+        pos = cas.horzcat(pos, pos[:,-1] + vel[:,-1]*dt + 1/2*acc[:,k]*dt**2)
         vel = cas.horzcat(vel, vel[:,-1] + acc[:,k]*dt)
 
     # cost

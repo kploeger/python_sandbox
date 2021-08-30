@@ -14,30 +14,15 @@
 import casadi as cas
 import matplotlib.pyplot as plt
 import numpy as np
-import subprocess
-import time
-import timeit
 
 
-# compile options
-solve_normally = True
-solve_with_jit = True
-solve_from_compiled = True
-recompile = True
-name = __file__[:-3] # name of the .c and .so file:
-
-# nlp options
 dt = 0.1
-num_steps = 500
+num_steps = 100
 num_dims = 3
 pos0 = np.array([0, 0, 0])
 vel0 = np.array([0, 0, 0])
 posT = np.array([1, 2, 3])
 velT = np.array([0, 0, 0])
-
-# solver options
-options = {'print_time': 0,
-           'ipopt.print_level': 0}
 
 
 def main():
@@ -62,41 +47,11 @@ def main():
     opti.subject_to(pos[:,-1]==[1., 2., 3.])
     opti.subject_to(vel[:,-1]==[0., 0., 0.])
 
-    # test different solvers
-    if solve_normally:
-        opti.solver('ipopt', options)
-        T_normal = timeit.timeit(lambda: opti.solve(), number=1000)/1000
-        print(f'time to solve normally: {T_normal}')
-
-    if solve_with_jit:
-        jit_options = {"flags": "-O3", "verbose": True, "compiler": "gcc"}
-        options_ = {"jit": True, "compiler": "shell",
-                    "jit_options": jit_options,
-                    **options}
-        opti.solver('ipopt', options_)
-        T_jit_0 = timeit.timeit(opti.solve, number=1)
-        print(f'time to solve with jit: {T_jit_0}')
-        T_jit = timeit.timeit(opti.solve, number=1000)/1000
-        print(f'time to solve again with jit: {T_jit}')
-
-    if recompile:
-        t_build = time.time()
-        argument = []
-        result = [pos, vel, acc]
-        func = opti.to_function('nlp', argument, result)
-        func.generate("nlp.c")
-        subprocess.Popen(["gcc","-fPIC", "-shared", "-O3", name+".c",
-                          "-o", name+".so"]).wait()
-        T_build = time.time() - t_build
-        print(f'time to compile" {T_build}')
-
-    if solve_from_compiled:
-        solver = cas.nlpsol("solver", "ipopt", name+".so")
-        T_compiled = timeit.timeit(solver, number=1000)/1000
-        print(f'time to solve from compiled" {T_compiled}')
+    # solver
+    opti.solver('ipopt')
+    sol = opti.solve()
 
     # plots
-    sol = opti.solve()
     pos = np.concatenate([pos0.reshape((num_dims, 1)), sol.value(pos)], axis=1)
     vel = np.concatenate([vel0.reshape((num_dims, 1)), sol.value(vel)], axis=1)
     acc = sol.value(acc)

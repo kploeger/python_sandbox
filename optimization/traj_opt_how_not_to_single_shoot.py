@@ -57,22 +57,18 @@ def main():
     dx = np.concatenate(([dx0], np.diff(x, n=1, axis=0), [dxT]))
     ddx = np.diff(dx, n=1, axis=0)
 
-    print(res)
-
     # plot solution
-    plt.figure()
-    plt.title('pos')
+    fig, ax = plt.subplots(3, 1, figsize=(12,9))
+    ax[0].set_ylabel('position')
+    ax[1].set_ylabel('velocity')
+    ax[2].set_ylabel('acceleration')
+
     for i in range(SHAPE[1]):
-        plt.plot(x[:, i])
-    plt.figure()
-    plt.title('vel')
-    for i in range(dx.shape[1]):
-        plt.plot(dx[:, i])
-    plt.figure()
-    plt.title('acc')
-    for i in range(ddx.shape[1]):
-        plt.plot(ddx[:, i])
+        ax[0].plot(x[:, i])
+        ax[1].plot(dx[:, i])
+        ax[2].plot(ddx[:, i])
     plt.show()
+
 
 
 if __name__ == '__main__':
