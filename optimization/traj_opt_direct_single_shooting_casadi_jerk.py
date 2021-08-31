@@ -1,11 +1,9 @@
 """
-    Simple direct single shooting trajectory optimization using CasADi.
+    Direct single shooting trajectory optimization using CasADi.
 
-    dynamical system: simple integrator
-    controls:         acceleration
-    cost:             squared acceleration
-
-    -> approximates cubic splines
+    dynamical system: triple integrator
+    controls:         jerk
+    cost:             sum of squared jerks/accelerations/velocities
 
     mail@kaiploeger.net
 """

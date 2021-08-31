@@ -1,11 +1,9 @@
 """
     Simple direct single shooting trajectory optimization using CasADi.
 
-    CasADi does not support compiling NLPs with Ipopt using the Opti interface.
-    C code can be generated, but it throws an error while building.
-
-    Just in time compilation works, but compilation time is way to huge.
-
+    dynamical system: simple double integrator
+    controls:         accelerations
+    cost:             sum of squared accelerations
 
     mail@kaiploeger.net
 """

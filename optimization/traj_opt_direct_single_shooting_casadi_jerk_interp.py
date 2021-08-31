@@ -1,11 +1,10 @@
 """
-    Simple direct single shooting trajectory optimization using CasADi.
+    Direct single shooting trajectory optimization using CasADi and
+    interpolation of acc/vel/pos within discretization steps.
 
-    dynamical system: simple integrator
-    controls:         acceleration
-    cost:             squared acceleration
-
-    -> approximates cubic splines
+    dynamical system: triple integrator
+    controls:         jerk
+    cost:             sum of squared jerks
 
     mail@kaiploeger.net
 """
@@ -21,7 +20,6 @@ T = 1.0            # time horizon
 num_steps = 10     # number discretization intervals
 num_dims = 3       # number of system dimensions
 num_substeps = 10  # number of interpolated substeps
-
 
 
 def main():
