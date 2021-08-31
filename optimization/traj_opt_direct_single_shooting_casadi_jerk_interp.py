@@ -31,8 +31,10 @@ def main():
     acc0 = opti.variable(num_dims, 1)
 
     # ---- dynamics / integration ----
-    pos = np.array([0, 0, 0]).reshape(num_dims, 1)
-    vel = np.array([0, 0, 0]).reshape(num_dims, 1)
+    pos0 = opti.parameter(3, 1)
+    vel0 = opti.parameter(3, 1)
+    pos = pos0
+    vel = vel0
     acc = acc0
     for k in range(0, num_steps):
         pos = cas.horzcat(pos, pos[:,-1] + vel[:,-1]*dt + 1/2*acc[:,-1]*dt**2 + 1/6*jer[:,k]*dt**3)
@@ -44,8 +46,10 @@ def main():
     opti.minimize(cost)
 
     # ---- boundary conditions ----
-    opti.subject_to(pos[:,-1]==[1., 2., 3.])
-    opti.subject_to(vel[:,-1]==[0., 0., 0.])
+    opti.set_value(pos0, [0, 0, 0])
+    opti.set_value(vel0, [0, 0, 0])
+    opti.subject_to(pos[:,-1]==[1, 2, 3])
+    opti.subject_to(vel[:,-1]==[0, 0, 0])
 
     # ---- run solver ---
     opti.solver('ipopt')
