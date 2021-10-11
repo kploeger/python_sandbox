@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="wam4dof">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="3.40104668810698E-05 0.0736066059361039 -0.0587577266799806"
+        rpy="0 0 0" />
+      <mass
+        value="13.5476126893973" />
+      <inertia
+        ixx="0.156470957074821"
+        ixy="-4.03291630164834E-05"
+        ixz="4.63998145785351E-05"
+        iyy="0.214731752462203"
+        iyz="0.00513845865911243"
+        izz="0.108286175637366" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wam_sim/launch/wam4dof/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wam_sim/launch/wam4dof/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="FirstLink">
+    <inertial>
+      <origin
+        xyz="2.53990162847128E-08 0.104881717494166 3.04922796016718E-09"
+        rpy="0 0 0" />
+      <mass
+        value="17.3731551398704" />
+      <inertia
+        ixx="0.276162321852689"
+        ixy="5.20061008372045E-08"
+        ixz="7.60373821026883E-08"
+        iyy="0.237968754825239"
+        iyz="3.79403873882493E-09"
+        izz="0.145688610159368" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wam_sim/launch/wam4dof/meshes/FirstLink.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.796078431372549 0.796078431372549 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wam_sim/launch/wam4dof/meshes/FirstLink.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="q1"
+    type="revolute">
+    <origin
+      xyz="0 0 0.16"
+      rpy="1.5708 0 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="FirstLink" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-2.6"
+      upper="2.6"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="SecondLink">
+    <inertial>
+      <origin
+        xyz="-3.3073356588952E-06 0.0504592578779876 -1.9386722993241E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.617554855470771" />
+      <inertia
+        ixx="0.00258552588913393"
+        ixy="-1.52178232455456E-08"
+        ixz="-4.72455503359287E-08"
+        iyy="0.00186310872414462"
+        iyz="3.58033312144958E-08"
+        izz="0.00227630686304741" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wam_sim/launch/wam4dof/meshes/SecondLink.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.796078431372549 0.796078431372549 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wam_sim/launch/wam4dof/meshes/SecondLink.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="q2"
+    type="revolute">
+    <origin
+      xyz="0 0.186 0"
+      rpy="3.1416 -1.5708 3.1416" />
+    <parent
+      link="FirstLink" />
+    <child
+      link="SecondLink" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-2"
+      upper="2"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="ThirdLink">
+    <inertial>
+      <origin
+        xyz="9.06095709371319E-06 0.79471468339664 -0.0130869016439969"
+        rpy="0 0 0" />
+      <mass
+        value="1.38872635233445" />
+      <inertia
+        ixx="0.0300789785129619"
+        ixy="-1.13635275781099E-06"
+        ixz="2.68391703177075E-07"
+        iyy="0.00292729996562077"
+        iyz="0.00176956641651549"
+        izz="0.0304265850675373" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wam_sim/launch/wam4dof/meshes/ThirdLink.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wam_sim/launch/wam4dof/meshes/ThirdLink.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="q3"
+    type="revolute">
+    <origin
+      xyz="0 -0.346 0"
+      rpy="3.1416 0 -3.1416" />
+    <parent
+      link="SecondLink" />
+    <child
+      link="ThirdLink" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-2.8"
+      upper="2.8"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="FourthLink">
+    <inertial>
+      <origin
+        xyz="4.97245046301318E-07 0.0449944772820914 0.235880484538515"
+        rpy="0 0 0" />
+      <mass
+        value="176061.840482555" />
+      <inertia
+        ixx="702.26848763124"
+        ixy="-0.0381965038623444"
+        ixz="-0.0039041419617575"
+        iyy="702.827652770772"
+        iyz="-0.0153100690126369"
+        izz="299.798441788385" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wam_sim/launch/wam4dof/meshes/FourthLink.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.666666666666667 0.63921568627451 0.556862745098039 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wam_sim/launch/wam4dof/meshes/FourthLink.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="q4"
+    type="revolute">
+    <origin
+      xyz="0 0.896 -0.045"
+      rpy="1.5706 0 3.1416" />
+    <parent
+      link="ThirdLink" />
+    <child
+      link="FourthLink" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.9"
+      upper="3.1"  
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link name="bhand_ftsensor">
+    <inertial>
+  	  <mass value="0.06864753"/>
+	  <origin xyz="0 0 0" />  
+	  <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+	</inertial>
+	<visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry name="link_bhand_ftsensor_visual">
+        <mesh filename="package://wam_sim/launch/wam4dof/meshes/bhand_ftsensor.mesh" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry name="link_bhand_ftsensor_collision">
+        <mesh filename="package://wam_sim/launch/wam4dof/meshes/bhand_ftsensor.mesh" />
+      </geometry>
+      <contact_coefficients kd="1.0" kp="1000.0" mu="0"/>
+    </collision>
+  </link>
+#LINK BHAND BASE
+  <link name="bhand_base">
+    <inertial>
+  	  <mass value="0.8"/>
+	  <origin xyz="0 0 0" />  
+	  <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+	</inertial>
+	<visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry name="link_bhand_base_visual">
+        <mesh filename="package://wam_sim/launch/wam4dof/meshes/bhand_base.mesh" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry name="link_bhand_base_collision">
+        <mesh filename="package://wam_sim/launch/wam4dof/meshes/bhand_base.mesh" />
+      </geometry>
+      <contact_coefficients kd="1.0" kp="1000.0" mu="0"/>
+    </collision>
+  </link>  
+  
+  #FINGERS
+  
+  #LINK BHAND LINK F11
+  <link name="bhand_link11">
+    <inertial>
+  	  <mass value="0.1"/>
+	  <origin xyz="0 0 0" />  
+	  <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+	</inertial>
+	<visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry name="link_bhand_f11_visual">
+        <mesh filename="package://wam_sim/launch/wam4dof/meshes/bhand_link1.mesh" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.796078431372549 0.796078431372549 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry name="link_bhand_f11_collision">
+        <mesh filename="package://wam_sim/launch/wam4dof/meshes/bhand_link1.mesh" />
+      </geometry>
+      <contact_coefficients kd="1.0" kp="1000.0" mu="0"/>
+    </collision>
+  </link>  
+  
+  #LINK BHAND LINK F21
+  <link name="bhand_link21">
+    <inertial>
+  	  <mass value="0.1"/>
+	  <origin xyz="0 0 0" />  
+	  <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+	</inertial>
+	<visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry name="link_bhand_f21_visual">
+        <mesh filename="package://wam_sim/launch/wam4dof/meshes/bhand_link1.mesh" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.796078431372549 0.796078431372549 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry name="link_bhand_f21_collision">
+        <mesh filename="package://wam_sim/launch/wam4dof/meshes/bhand_link1.mesh" />
+      </geometry>
+      <contact_coefficients kd="1.0" kp="1000.0" mu="0"/>
+    </collision>
+  </link>  
+  
+  #LINK BHAND LINK F12
+  <link name="bhand_link12">
+    <inertial>
+  	  <mass value="0.1"/>
+	  <origin xyz="0 0 0" />  
+	  <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+	</inertial>
+	<visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry name="link_bhand_f12_visual">
+        <mesh filename="package://wam_sim/launch/wam4dof/meshes/bhand_link2.mesh" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.796078431372549 0.796078431372549 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry name="link_bhand_f12_collision">
+        <mesh filename="package://wam_sim/launch/wam4dof/meshes/bhand_link2.mesh" />
+      </geometry>
+      <contact_coefficients kd="1.0" kp="1000.0" mu="0"/>
+    </collision>
+  </link>  
+  
+  #LINK BHAND LINK F22
+  <link name="bhand_link22">
+    <inertial>
+  	  <mass value="0.1"/>
+	  <origin xyz="0 0 0" />  
+	  <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+	</inertial>
+	<visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry name="link_bhand_f22_visual">
+        <mesh filename="package://wam_sim/launch/wam4dof/meshes/bhand_link2.mesh" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.796078431372549 0.796078431372549 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry name="link_bhand_f22_collision">
+        <mesh filename="package://wam_sim/launch/wam4dof/meshes/bhand_link2.mesh" />
+      </geometry>
+      <contact_coefficients kd="1.0" kp="1000.0" mu="0"/>
+    </collision>
+  </link>  
+  
+  #LINK BHAND LINK F32
+  <link name="bhand_link32">
+    <inertial>
+  	  <mass value="0.1"/>
+	  <origin xyz="0 0 0" />  
+	  <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+	</inertial>
+	<visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry name="link_bhand_f32_visual">
+        <mesh filename="package://wam_sim/launch/wam4dof/meshes/bhand_link2.mesh" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.796078431372549 0.796078431372549 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry name="link_bhand_f32_collision">
+        <mesh filename="package://wam_sim/launch/wam4dof/meshes/bhand_link2.mesh" />
+      </geometry>
+      <contact_coefficients kd="1.0" kp="1000.0" mu="0"/>
+    </collision>
+  </link>  
+  
+  #LINK BHAND LINK F13
+  <link name="bhand_link13">
+    <inertial>
+  	  <mass value="0.1"/>
+	  <origin xyz="0 0 0" />  
+	  <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+	</inertial>
+	<visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry name="link_bhand_f13_visual">
+        <mesh filename="package://wam_sim/launch/wam4dof/meshes/bhand_link3.mesh" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.796078431372549 0.796078431372549 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry name="link_bhand_f13_collision">
+        <mesh filename="package://wam_sim/launch/wam4dof/meshes/bhand_link3.mesh" />
+      </geometry>
+      <contact_coefficients kd="1.0" kp="1000.0" mu="0"/>
+    </collision>
+  </link>  
+  
+  #LINK BHAND LINK F23
+  <link name="bhand_link23">
+    <inertial>
+  	  <mass value="0.1"/>
+	  <origin xyz="0 0 0" />  
+	  <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+	</inertial>
+	<visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry name="link_bhand_f23_visual">
+        <mesh filename="package://wam_sim/launch/wam4dof/meshes/bhand_link3.mesh" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.796078431372549 0.796078431372549 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry name="link_bhand_f23_collision">
+        <mesh filename="package://wam_sim/launch/wam4dof/meshes/bhand_link3.mesh" />
+      </geometry>
+      <contact_coefficients kd="1.0" kp="1000.0" mu="0"/>
+    </collision>
+  </link>  
+  
+  #LINK BHAND LINK F33
+  <link name="bhand_link33">
+    <inertial>
+  	  <mass value="0.1"/>
+	  <origin xyz="0 0 0" />  
+	  <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+	</inertial>
+	<visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry name="link_bhand_f33_visual">
+        <mesh filename="package://wam_sim/launch/wam4dof/meshes/bhand_link3.mesh" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.796078431372549 0.796078431372549 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry name="link_bhand_f33_collision">
+        <mesh filename="package://wam_sim/launch/wam4dof/meshes/bhand_link3.mesh" />
+      </geometry>
+      <contact_coefficients kd="1.0" kp="1000.0" mu="0"/>
+    </collision>
+  </link>  
+
+  <joint name="bhand_ftsensor_joint" type="fixed">
+    <parent link="FourthLink"/>
+    <child link="bhand_ftsensor" />
+    <origin xyz="0.0 0.045 0.355" rpy="1.57079633 0 0" />
+  </joint>
+ <joint name="bhand_base_joint" type="fixed">
+    <parent link="bhand_ftsensor"/>
+    <child link="bhand_base" />
+    <origin xyz="0.0 0.015 0.0" rpy="-1.57079633 0 0.0" />
+  </joint>
+  <joint name="bhand_j11_joint" type="revolute">
+     <origin xyz="-0.02475 0.0 0.0395" rpy="0.0 0 -1.57079633" /> 
+     <parent link="bhand_base"/>
+     <child link="bhand_link11" />
+     <axis xyz="0 0 -1"/>
+     <limit effort="30" velocity="1.5" lower="0.0" upper="3.14159265" />
+     <joint_properties damping="100.0" friction="1000.0" />
+     <dynamics damping="1000"/>
+  </joint >
+  
+  <joint name="bhand_j21_joint" type="revolute">
+     <origin xyz="0.02475 0.0 0.0395" rpy="0.0 0.0 -1.57079633" /> 
+     <parent link="bhand_base"/>
+     <child link="bhand_link21" />
+     <axis xyz="0 0 -1"/>
+     <limit effort="30" velocity="1.5" lower="-3.14159265" upper="0.0" />
+     <joint_properties damping="100.0" friction="1000.0" />
+     <dynamics damping="1000"/>
+  </joint >
+  
+  <joint name="bhand_j12_joint" type="revolute">
+     <origin xyz="0.050 0.0 0.038" rpy="1.57079633 0 0.0" /> 
+     <parent link="bhand_link11"/>
+     <child link="bhand_link12" />
+     <axis xyz="0 0 1"/>
+     <limit effort="30" velocity="1.5" lower="0.0" upper="2.44346095" />
+     <joint_properties damping="100.0" friction="1000.0" />
+     <dynamics damping="1000"/>
+  </joint >
+  
+  <joint name="bhand_j22_joint" type="revolute">
+     <origin xyz="0.050 0.0 0.038" rpy="1.57079633 0 0.0" /> 
+     <parent link="bhand_link21"/>
+     <child link="bhand_link22" />
+     <axis xyz="0 0 1"/>
+     <limit effort="30" velocity="1.5" lower="0.0" upper="2.44346095" />
+     <joint_properties damping="100.0" friction="1000.0" />
+     <dynamics damping="1000"/>
+  </joint >
+  
+  <joint name="bhand_j32_joint" type="revolute">
+     <origin xyz="0.0 0.050 0.0775" rpy="1.57079633 0 1.57079633" /> 
+     <parent link="bhand_base"/>
+     <child link="bhand_link32" />
+     <axis xyz="0 0 1"/>
+     <limit effort="30" velocity="1.5" lower="0.0" upper="2.44346095" />
+     <joint_properties damping="100.0" friction="1000.0" />
+     <dynamics damping="1000"/>
+  </joint >
+  
+  <joint name="bhand_j13_joint" type="revolute">
+     <origin xyz="0.070 0.0 0.0" rpy="0.0 0 0.0" /> 
+     <parent link="bhand_link12"/>
+     <child link="bhand_link13" />
+     <axis xyz="0 0 1"/>
+     <limit effort="30" velocity="1.5" lower="0.698131701" upper="2.44346095" />
+     <joint_properties damping="100.0" friction="1000.0" />
+     <dynamics damping="1000"/>
+  </joint >
+  
+  <joint name="bhand_j23_joint" type="revolute">
+     <origin xyz="0.070 0.0 0.0" rpy="0.0 0 0.0" /> 
+     <parent link="bhand_link22"/>
+     <child link="bhand_link23" />
+     <axis xyz="0 0 1"/>
+     <limit effort="30" velocity="1.5" lower="0.698131701" upper="2.44346095" />
+     <joint_properties damping="100.0" friction="1000.0" />
+     <dynamics damping="1000"/>
+  </joint >
+  
+  <joint name="bhand_j33_joint" type="revolute">
+     <origin xyz="0.070 0.0 0.0" rpy="0.0 0 0.0" /> 
+     <parent link="bhand_link32"/>
+     <child link="bhand_link33" />
+     <axis xyz="0 0 1"/>
+     <limit effort="30" velocity="1.5" lower="0.698131701" upper="2.44346095" />
+     <joint_properties damping="100.0" friction="1000.0" />
+     <dynamics damping="1000"/>
+  </joint >
+</robot>
