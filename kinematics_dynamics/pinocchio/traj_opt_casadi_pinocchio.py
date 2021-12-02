@@ -55,7 +55,6 @@ def cdfkin(cmodel, cdata, frame_id, cq, cdq, cddq):
     return cx, cdx, cddx
 
 
-
 def main():
     # model = pin.buildSampleModelHumanoidRandom()
     model = pin.buildModelFromUrdf(URDF_PATH)
@@ -72,12 +71,13 @@ def main():
     dq0 = np.array([0, 0, 0, 0])
     ddq0 = np.array([0, 0, 0, 0])
 
-    # qT = np.array([0.1, 0.2, 0.3, 0.4])
+    qT = np.array([0.1, 0.2, 0.3, 0.4])
     dqT = np.array([0, 0, 0, 0])
     ddqT = np.array([0, 0, 0, 0])
 
     xT = np.array([0.31, -0.07, 2.04])
-
+    dxT = np.array([0, 0, 0])
+    ddxT = np.array([0, 0, 0])
 
     # decision vars
     cdddq = cas.SX.sym("dddq", cmodel.nq, num_steps)
@@ -100,15 +100,50 @@ def main():
 
 
     # constraints
-    cxT = cfkin(cmodel, cdata, tool_id, cq[:,-1])
+    cxT, cdxT, cddxT = cdfkin(cmodel, cdata, tool_id, cq[:,-1], cdq[:,-1], cddq[:,-1])
+    # task space postion - works
     cons = cas.vertcat(cxT - xT,
                        cdq[:,-1] - dqT,
                        cddq[:,-1] - ddqT)
 
+    # task space position and velocit - works
+    # cons = cas.vertcat(cq[:,-1] - qT,
+                       # cdxT - dxT,
+                       # cddq[:,-1] - ddqT)
 
-    # constraint bounds
+    # task space acceleration - works
+    # cons = cas.vertcat(cq[:,-1] - qT,
+                       # cdq[:,-1] - dqT,
+                       # cddxT - ddxT)
+
+    # task space position and velocity - works
+    # cons = cas.vertcat(cxT - xT,
+                       # cdxT - dxT,
+                       # cddq[:,-1] - ddqT)
+
+    # task space position and acceleration - works
+    # cons = cas.vertcat(cxT - xT,
+                       # cdq[:,-1] - dqT,
+                       # cddxT - ddxT)
+
+    # task space velocity and acceleration - works
+    # cons = cas.vertcat(cq[:,-1] - qT,
+                       # cdxT - dxT,
+                       # cddxT - ddxT)
+
+    # task space position velocity and acceleration - doesn't work
+    # cons = cas.vertcat(cxT - xT,
+                       # cdxT - dxT,
+                       # cddxT - ddxT)
+
     lbg = np.zeros(np.shape(cons)[0])
     ubg = np.zeros(np.shape(cons)[0])
+
+    # max jerk:
+    max_jerk = 0.2
+    cons = cas.vertcat(cons, cdddq.reshape((cmodel.nv*num_steps, 1)))
+    lbg = np.concatenate((lbg,-max_jerk*np.ones(cmodel.nv*num_steps)))
+    ubg = np.concatenate((ubg, max_jerk*np.ones(cmodel.nv*num_steps)))
 
 
     # solver
