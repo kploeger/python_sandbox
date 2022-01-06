@@ -154,10 +154,10 @@ def main():
                        # cddxT - ddxT)
 
     # task space position velocity and acceleration
-    # cons = cas.vertcat(cons,
-                       # cxT - xT,
-                       # cdxT - dxT,
-                       # cddxT - ddxT)
+    cons = cas.vertcat(cons,
+                       cxT - xT,
+                       cdxT - dxT,
+                       cddxT - ddxT)
 
     lbg = np.zeros(np.shape(cons)[0])
     ubg = np.zeros(np.shape(cons)[0])
