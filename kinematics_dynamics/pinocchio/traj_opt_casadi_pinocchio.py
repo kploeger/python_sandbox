@@ -56,7 +56,6 @@ def cdfkin(cmodel, cdata, frame_id, cq, cdq, cddq):
 
 
 def main():
-    # model = pin.buildSampleModelHumanoidRandom()
     model = pin.buildModelFromUrdf(URDF_PATH)
     data = model.createData()
 
@@ -79,14 +78,15 @@ def main():
     dxT = np.array([0, 0, 0])
     ddxT = np.array([0, 0, 0])
 
+
     # decision vars
     cdddq = cas.SX.sym("dddq", cmodel.nq, num_steps)
 
 
     # integration
-    cq = q0.reshape((4,1))
-    cdq = dq0.reshape((4,1))
-    cddq = ddq0.reshape((4,1))
+    cq = cas.SX(q0)
+    cdq = cas.SX(dq0)
+    cddq = cas.SX(ddq0)
 
     for k in range(0, num_steps):
         cq = cas.horzcat(cq, cq[:,-1] + cdq[:,-1]*dt + 1/2*cddq[:,-1]*dt**2 + 1/6*cdddq[:,k]*dt**3)
@@ -95,8 +95,9 @@ def main():
 
 
     # cost
-    cost = cas.sum1(cas.sum2(cddq**2))  # squared accelerations
-    # cost = cas.sum1(cas.sum2(cdddq**2))  # squared jerk
+    cost = 0
+    cost += cas.sum1(cas.sum2(cddq**2))  # squared accelerations
+    # cost += cas.sum1(cas.sum2(cdddq**2))  # squared jerk
 
 
     # constraints

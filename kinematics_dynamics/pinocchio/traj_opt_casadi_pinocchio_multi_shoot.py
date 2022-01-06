@@ -56,7 +56,6 @@ def cdfkin(cmodel, cdata, frame_id, cq, cdq, cddq):
 
 
 def main():
-    # model = pin.buildSampleModelHumanoidRandom()
     model = pin.buildModelFromUrdf(URDF_PATH)
     data = model.createData()
 
@@ -79,22 +78,19 @@ def main():
     dxT = np.array([0, 0, 0])
     ddxT = np.array([0, 0, 0])
 
+
     # decision vars
     cdddq = cas.SX.sym("dddq", cmodel.nq, num_steps)
     cqT = cas.SX.sym("qT", 4, 1)
     cdqT = cas.SX.sym("dqT", 4, 1)
     cddqT = cas.SX.sym("ddqT", 4, 1)
-
     dec_vars = cas.horzcat(cdddq, cqT, cdqT, cddqT)
 
 
-    cost = 0
-    cons = []
-
     # integration
-    cq = q0.reshape((4,1))
-    cdq = dq0.reshape((4,1))
-    cddq = ddq0.reshape((4,1))
+    cq = cas.SX(q0)
+    cdq = cas.SX(dq0)
+    cddq = cas.SX(ddq0)
 
     for k in range(0, num_steps-1):
         cq = cas.horzcat(cq, cq[:,-1] + cdq[:,-1]*dt + 1/2*cddq[:,-1]*dt**2 + 1/6*cdddq[:,k]*dt**3)
@@ -105,14 +101,18 @@ def main():
     cdq = cas.horzcat(cdq, cdqT)
     cddq = cas.horzcat(cddq, cddqT)
 
-    cons = cas.vertcat(cons,
-                       cq[:,-2] + cdq[:,-2]*dt + 1/2*cddq[:,-2]*dt**2 + 1/6*cdddq[:,-1] - cq[:,-1],
+
+    # defect constraint
+    cons = cas.vertcat(cq[:,-2] + cdq[:,-2]*dt + 1/2*cddq[:,-2]*dt**2 + 1/6*cdddq[:,-1] - cq[:,-1],
                        cdq[:,-2] + cddq[:,-2]*dt + 1/2*cdddq[:,-1]*dt**2 - cdq[:,-1],
                        cddq[:,-2] + cdddq[:,-1]*dt - cddq[:,-1])
 
+
     # cost
+    cost = 0
     cost += cas.sum1(cas.sum2(cddq**2))  # squared accelerations
     # cost += cas.sum1(cas.sum2(cdddq**2))  # squared jerk
+
 
     # constraints
     cxT, cdxT, cddxT = cdfkin(cmodel, cdata, tool_id, cq[:,-1], cdq[:,-1], cddq[:,-1])
@@ -159,10 +159,9 @@ def main():
                        cdxT - dxT,
                        cddxT - ddxT)
 
-    lbg = np.zeros(np.shape(cons)[0])
-    ubg = np.zeros(np.shape(cons)[0])
+    lbg = np.zeros(cons.shape[0])
+    ubg = np.zeros(cons.shape[0])
 
-    # max jerk:
     max_jerk = 0.2
     cons = cas.vertcat(cons, cdddq.reshape((cmodel.nv*num_steps, 1)))
     lbg = np.concatenate((lbg,-max_jerk*np.ones(cmodel.nv*num_steps)))
@@ -194,6 +193,7 @@ def main():
     ddx = np.zeros((3, num_steps+1))
     for k in range(0, num_steps+1):
         x[:,k], dx[:,k], ddx[:,k] = dfkin(model, data, tool_id, q[:,k], dq[:,k], ddq[:,k])
+
 
     print('\nfinal state:')
     print('qT:   ', q[:,-1])
