@@ -1,9 +1,12 @@
 """
+    Benchmarking different linear solvers with IPOPT.
+        --> hsl_ma27 and hsl_ma57 are similar and faster than standard mumps
+
     Direct single shooting trajectory optimization using CasADi.
 
     dynamical system: triple integrator
     controls:         jerk
-    cost:             sum of squared jerks/accelerations/velocities
+    cost:             sum of squared accelerations
 
     mail@kaiploeger.net
 """
@@ -19,10 +22,10 @@ dt = 0.1
 num_steps = 100
 num_dims = 3
 
-solvers = ['ma27', 'ma57', 'ma77', 'ma86', 'ma97', 
-           #'pardiso', 
+solvers = ['ma27', 'ma57', 'ma77', 'ma86', 'ma97',
+           #'pardiso',
            #'sprals',
-           #'ampl', 
+           #'ampl',
            'mumps']
 
 num_rollouts = 100
@@ -34,9 +37,9 @@ for solver in solvers:
 def main():
 
     for i in range(num_rollouts):
-    
+
         for solver in solvers:
-        
+
             options = {'ipopt.linear_solver': solver}
 
             opti = cas.Opti()
@@ -56,17 +59,7 @@ def main():
                 vel = cas.horzcat(vel, vel[:,-1] + acc[:,-1]*dt + 1/2*jer[:,k]*dt**2)
                 acc = cas.horzcat(acc, acc[:,-1] + jer[:,k]*dt)
 
-            # ---- cost ----
-            # cost = cas.sum1(cas.sum2(vel**2))
-            # vel**2 converges to infeasible trajectory
-
-            # cost = cas.sum1(cas.sum2(acc**2)) \
-            # acc**2 as cost is problematic. Accelerations are interpolated linearly,
-            # so acc[0] and acc[-1] only influence a single interval, while all other
-            # acc[i] influence two intervals. Therefore more expensive to accelerate at
-            # t=0 and t=T and the corresponding acc values will be lower than the rest.
-
-            cost = cas.sum1(cas.sum2(jer**2))
+            cost = cas.sum1(cas.sum2(acc**2))
             opti.minimize(cost)
 
             # ---- boundary conditions ----
@@ -77,12 +70,12 @@ def main():
 
             # ---- run solver ---
             opti.solver('ipopt', options)
-            
+
             sol = opti.solve() # first run includes building of the problem
             t0 = time.time()
             sol = opti.solve()
             t = time.time() - t0
-            
+
             results[solver].append(t)
 
             # ---- plots ----
@@ -105,7 +98,7 @@ def main():
                            np.concatenate([jer[:, 0].reshape(num_dims,1),
                                            jer], axis=1)[i,:])
             #plt.show()
-            
+
     for solver in solvers:
         print(f'{solver}:\tmean: {np.mean(results[solver])*1000:.3f}ms\t std: {np.std(results[solver])*1000:.3f}ms')
 
