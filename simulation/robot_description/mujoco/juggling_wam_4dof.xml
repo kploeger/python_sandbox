@@ -34,7 +34,7 @@
     </default>
 
     <visual>
-        <global offwidth="1600" offheight="1200"/>
+        <global offwidth="2560" offheight="1440"/>
     </visual>
 
 
