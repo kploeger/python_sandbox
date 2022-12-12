@@ -1,0 +1,483 @@
+<?xml version="1.0" ?>
+<robot name="basket" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+    <!-- XACRO Properties -->
+    <xacro:property name="mesh_filename" value="../meshes/basket_ring_convex_part_side.obj"/>
+    <xacro:property name="basket_size" value="0.005 0.285 0.24"/>
+    <xacro:property name="basket_origin" value="0.0875 0 0"/>
+
+
+    <link name="basket">
+        <visual>
+            <origin xyz="${basket_origin}"/>
+            <geometry>
+                <box size="${basket_size}"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="${basket_origin}"/>
+            <geometry>
+                <box size="${basket_size}"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="basket_ring">
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0.0"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0.19634954084936207"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0.39269908169872414"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0.5890486225480862"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0.7853981633974483"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0.9817477042468103"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 1.1780972450961724"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 1.3744467859455345"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 1.5707963267948966"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 1.7671458676442586"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 1.9634954084936207"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 2.1598449493429825"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 2.356194490192345"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 2.552544031041707"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 2.748893571891069"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 2.945243112740431"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 3.141592653589793"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 3.3379421944391554"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 3.5342917352885173"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 3.730641276137879"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 3.9269908169872414"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 4.123340357836604"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 4.319689898685965"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 4.516039439535327"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 4.71238898038469"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 4.908738521234052"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 5.105088062083414"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 5.301437602932776"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 5.497787143782138"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 5.6941366846315"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 5.890486225480862"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 6.086835766330224"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </visual>
+
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0.0"/>
+        <geometry>
+            <mesh filename="${mesh_filename}"/>
+        </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0.19634954084936207"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0.39269908169872414"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0.5890486225480862"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0.7853981633974483"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0.9817477042468103"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 1.1780972450961724"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 1.3744467859455345"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 1.5707963267948966"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 1.7671458676442586"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 1.9634954084936207"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 2.1598449493429825"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 2.356194490192345"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 2.552544031041707"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 2.748893571891069"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 2.945243112740431"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 3.141592653589793"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 3.3379421944391554"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 3.5342917352885173"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 3.730641276137879"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 3.9269908169872414"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 4.123340357836604"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 4.319689898685965"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 4.516039439535327"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 4.71238898038469"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 4.908738521234052"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 5.105088062083414"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 5.301437602932776"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 5.497787143782138"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 5.6941366846315"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 5.890486225480862"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 6.086835766330224"/>
+            <geometry>
+                <mesh filename="${mesh_filename}"/>
+            </geometry>
+        </collision>
+
+    </link>
+
+
+    <joint name="fixed_basket_to_ring" type="fixed">
+        <parent link="basket"/>
+        <child link="basket_ring"/>
+    </joint>
+</robot>

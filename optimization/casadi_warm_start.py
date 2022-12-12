@@ -11,12 +11,11 @@
     mail@kaiploeger.net
 """
 
+import time
 
 import casadi as cas
-import numpy as np
 import matplotlib.pyplot as plt
-
-import time
+import numpy as np
 
 dt = 0.1
 num_steps = 100
@@ -28,8 +27,8 @@ posT = np.array([1, 2, 3])
 velT = np.array([0, 0, 0])
 
 
-NUM_ROLLOUTS = 10000
-PLOT = False
+NUM_ROLLOUTS = 1000  #FIXIT
+PLOT = True
 
 """
 https://groups.google.com/g/casadi-users/c/DMrWvz3xh5s
@@ -69,6 +68,7 @@ def test(num_rollouts,
         cvel = cas.horzcat(cvel, cvel[:,-1] + cacc[:,-1]*dt + 1/2*cjer[:,k]*dt**2)
         cacc = cas.horzcat(cacc, cacc[:,-1] + cjer[:,k]*dt)
 
+
     # ---- cost ----
     cost = cas.sum1(cas.sum2(cacc**2)) / num_steps
 
@@ -84,6 +84,7 @@ def test(num_rollouts,
     nlp = {"x": dec_vars, "f": cost, "g": cons}
     solver0 = cas.nlpsol('solver', 'ipopt', nlp, options_cold)
     sol = solver0(lbg=lbg, ubg=ubg)
+
     if warm_start:
         solver_eval = cas.nlpsol('solver', 'ipopt', nlp, options_warm)
     else:
@@ -148,4 +149,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
