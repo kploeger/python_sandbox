@@ -121,7 +121,7 @@
 <!--                            <geom class="z_axis"/>-->
                             <inertial pos="-0.03404529 -0.14053900 -0.00022942" mass="1.06513649" fullinertia="0.01848577 0.0045 0.01968956 -0.00150604 -0.00001741 -0.00002109" />
                             <site name="sites/forearm" pos="-0.03404529 -0.14053900 -0.00022942"/>
-                            <joint name="joint/elbow_pitch" range="-0.9 3.14159" />
+                            <joint name="joint/elbow" range="-0.9 3.14159" />
                             <geom class="viz" mesh="elbow_link_fine" rgba="0.85 0.85 0.85 1"/>
                             <geom class="col" mesh="elbow_link_convex"/>
                             <geom class="viz" type="cylinder" size=".0445 0.136" pos="-.045 -0.214 0" euler="1.57 0 0" rgba=".25 .25 .25 1"/>
@@ -199,5 +199,13 @@
         </body>
 
     </worldbody>
+
+    <actuator>
+        <motor name='joint_1' joint='joints/shoulder_yaw'/>
+        <motor name='joint_2' joint='joints/shoulder_pitch'/>
+        <motor name='joint_3' joint='joint/shoulder_roll'/>
+        <motor name='joint_4' joint='joint/elbow'/>
+    </actuator>
+
 
 </mujoco>
