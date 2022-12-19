@@ -10,7 +10,7 @@
 import cv2
 import numpy as np
 import mujoco as mj
-from mj_viewer import MujocoViewer
+from mujoco_utils import MujocoViewer
 from mujoco import mjtObj
 
 

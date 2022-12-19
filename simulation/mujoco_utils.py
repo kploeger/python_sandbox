@@ -34,6 +34,7 @@ class MujocoViewer:
         self._loop_count = 0
         self._advance_by_one_step = False
         self._hide_menu = True
+        self._pre_render_callback = None
 
         # glfw init
         glfw.init()
@@ -147,7 +148,7 @@ class MujocoViewer:
         elif key in (glfw.KEY_0, glfw.KEY_1, glfw.KEY_2, glfw.KEY_3, glfw.KEY_4):
             self.vopt.geomgroup[key - glfw.KEY_0] ^= 1
         # Quit
-        if key == glfw.KEY_ESCAPE:
+        if key == glfw.KEY_ESCAPE or key==glfw.KEY_CAPS_LOCK:
             print("Pressed ESC")
             print("Quitting.")
             glfw.terminate()
@@ -436,6 +437,9 @@ class MujocoViewer:
         mujoco.mjv_applyPerturbPose(self.model, self.data, self.pert, 0)
         mujoco.mjv_applyPerturbForce(self.model, self.data, self.pert)
 
+    def set_pre_render_callback(self, callback):
+        self._pre_render_callback = callback
+
     def render(self):
         # mjv_updateScene, mjr_render, mjr_overlay
         def update():
@@ -462,6 +466,10 @@ class MujocoViewer:
                     mujoco.mjtCatBit.mjCAT_ALL.value,
                     self.scn,
                 )
+
+                if self._pre_render_callback:
+                    self._pre_render_callback(self.model, self.data, self.scn)
+
                 # marker items
                 for marker in self._markers:
                     self._add_marker_to_scene(marker)
