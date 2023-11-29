@@ -33,7 +33,7 @@ def this_does_not_need_to_be_named_ask():
         'message': 'How are you?',
         'choices': ['good', 'meh', 'bad'],
     }
-    answers = iq.prompt(feeling_prompt)
+    answer_feeling = iq.prompt(feeling_prompt, vi_mode=True)
 
     food_prompt = {
         'type': 'checkbox',
@@ -41,7 +41,9 @@ def this_does_not_need_to_be_named_ask():
         'message': 'What do you want for breakfast?',
         'choices': ['eggs', 'french toast', 'orange juice', 'pancackes'],
     }
-    answers = answers.update(iq.prompt(food_prompt))
+
+    answer_food = iq.prompt(food_prompt, vi_mode=True)
+    answers = answer_feeling | answer_food # merge dictionaries
 
     click.echo(f'You are {answers["feeling"]} and would like to eat {answers["food"]}')
 
