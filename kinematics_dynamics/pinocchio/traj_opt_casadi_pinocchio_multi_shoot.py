@@ -2,6 +2,8 @@
     mail@kaiploeger.net
 """
 
+from pathlib import Path
+
 import pinocchio as pin
 from pinocchio import casadi as cpin  # requires pinocchio >= 2.9.0
 
@@ -13,6 +15,7 @@ import matplotlib.pyplot as plt
 
 
 URDF_PATH = "../robot_description/urdf/robot/wam_4dof.urdf"
+URDF_PATH = (Path(__file__).parent / URDF_PATH).resolve().as_posix()
 
 num_steps = 50
 dt = 0.1

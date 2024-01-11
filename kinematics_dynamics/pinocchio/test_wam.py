@@ -2,16 +2,19 @@
     mail@kaiploeger.net
 """
 
+from pathlib import Path
+
 import numpy as np
 import pinocchio as pin
 
-urdf_path = "../robot_description/urdf/robot/wam_4dof.urdf"
+URDF_PATH = "../robot_description/urdf/robot/wam_4dof.urdf"
+URDF_PATH = (Path(__file__).parent / URDF_PATH).resolve().as_posix()
 
 
 def main():
 
     # load model
-    model = pin.buildModelFromUrdf(urdf_path)
+    model = pin.buildModelFromUrdf(URDF_PATH)
 
 
     # create data structure that pinocchio stores information in

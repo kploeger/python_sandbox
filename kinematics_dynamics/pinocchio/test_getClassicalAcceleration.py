@@ -2,13 +2,17 @@
     mail@kaiploeger.net
 """
 
+from pathlib import Path
+
 import pinocchio as pin
 import numpy as np
 
+URDF_PATH = "../robot_description/urdf/robot/wam_4dof.urdf"
+URDF_PATH = (Path(__file__).parent / URDF_PATH).resolve().as_posix()
 
-q = np.array([0, 0])
-dq = np.array([0, 1])
-ddq = np.array([0, 0])
+q = np.array([0, 0, 0, 0])
+dq = np.array([0, 1, 0, 1])
+ddq = np.array([0, 0, 0, 0])
 
 ref_frame = pin.ReferenceFrame.LOCAL_WORLD_ALIGNED
 
@@ -17,7 +21,7 @@ def main():
     print('q:  ', q)
     print('dq: ', dq)
     print('ddq:', ddq)
-    model = pin.buildModelFromUrdf('robot.urdf')
+    model = pin.buildModelFromUrdf(URDF_PATH)
     data = model.createData()
 
     pin.forwardKinematics(model, data, q, dq, ddq)

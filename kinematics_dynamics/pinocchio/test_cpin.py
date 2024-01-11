@@ -2,6 +2,8 @@
     mail@kaiploeger.net
 """
 
+from pathlib import Path
+
 import pinocchio as pin
 from pinocchio import casadi as cpin
 
@@ -11,6 +13,7 @@ import numpy as np
 
 
 URDF_PATH = "../robot_description/urdf/robot/wam_4dof.urdf"
+URDF_PATH = (Path(__file__).parent / URDF_PATH).resolve().as_posix()
 
 
 def main():

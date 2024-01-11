@@ -2,12 +2,15 @@
     mail@kaiploeger.net
 """
 
+from pathlib import Path
+
 import pinocchio as pin
 import numpy as np
 import time
 
 
 URDF_PATH = "../robot_description/urdf/robot/wam_4dof.urdf"
+URDF_PATH = (Path(__file__).parent / URDF_PATH).resolve().as_posix()
 
 
 def fkin(model, data, frame_id, q):
